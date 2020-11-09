@@ -4,6 +4,7 @@
 ## Prerequisite
 
 ## Install
+. venv/Scripts/activate
 
 ## Feature
 - 양질의 리뷰와 그에 대한 최저가 비교 제공
