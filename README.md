@@ -13,8 +13,8 @@ pip install -r requirements.txt
 . venv/Scripts/activate
 
 # Django 실행
-cd review_Times
-python manage.py runserver
+cd review_site
+flask run
 ```
 ## Feature
 - 양질의 리뷰와 그에 대한 최저가 비교 제공
