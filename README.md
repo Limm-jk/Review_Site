@@ -12,7 +12,7 @@ pip install -r requirements.txt
 # 가상환경 실행
 . venv/Scripts/activate
 
-# Django 실행
+# Flask 실행
 cd review_site
 flask run
 ```
