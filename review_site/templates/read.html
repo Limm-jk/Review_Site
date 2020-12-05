@@ -3,7 +3,7 @@
     <h1>{{review.id}}</h1>
     <h1>{{review.subject}}</h1>
     <h1>{{review.content}}</h1>
-    <h1>{{review.created_at}}</h1>
+    <h1>{{review.create_date}}</h1>
     <a href="/reviews/{{review.id}}/delete">삭제</a>
     <a href="/reviews/{{review.id}}/edit">수정</a>
     <form action="/reviews/{{review.id}}/comments" method='post'>
@@ -11,9 +11,9 @@
         댓글 : <input type="text" name="content"/>
         <input type='submit'/>
     </form>
-    {% for comment in review.comments %}
+    {% for comment in review.review_set %}
         <p>{{comment.creator}} : {{comment.content}}</p>
-        <p>{{comment.created_at}}</p>
+        <p>{{comment.create_date}}</p>
         <a href="/comment/{{comment.id}}/delete">댓글삭제</a>
     {% endfor %}
 {% endblock %} 

@@ -1,6 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
 import datetime
-
 db = SQLAlchemy()
 
 class Review(db.Model):
@@ -12,7 +11,7 @@ class Review(db.Model):
     def __init__(self,subject,content):
         self.subject = subject
         self.content = content
-        self.created_at = datetime.datetime.now()
+        self.create_date = datetime.datetime.now()
 
 class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True) # 댓글 ID
@@ -26,5 +25,5 @@ class Comment(db.Model):
 
     def __init__(self,content,creator):
         self.content = content
-        self.created_at = datetime.datetime.now()
+        self.create_date = datetime.datetime.now()
         self.creator = creator
