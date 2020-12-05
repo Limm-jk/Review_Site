@@ -6,14 +6,15 @@
     <h1>{{review.create_date}}</h1>
     <a href="/reviews/{{review.id}}/delete">삭제</a>
     <a href="/reviews/{{review.id}}/edit">수정</a>
+    {% for comment in review.review_set %}
+        <p>{{comment.creator}} : {{comment.content}}</p>
+        <p>{{comment.create_date}}</p>
+        <a href="/comment/{{comment.id}}/delete">댓글삭제</a>
+        
+    {% endfor %}
     <form action="/reviews/{{review.id}}/comments" method='post'>
         작성자 : <input type="text" name="creator" />
         댓글 : <input type="text" name="content"/>
         <input type='submit'/>
     </form>
-    {% for comment in review.review_set %}
-        <p>{{comment.creator}} : {{comment.content}}</p>
-        <p>{{comment.create_date}}</p>
-        <a href="/comment/{{comment.id}}/delete">댓글삭제</a>
-    {% endfor %}
 {% endblock %} 
