@@ -22,6 +22,6 @@ flask run
 - 
 
 ## Issue
-- [ ] Back-End Tool 선정
+- [x] Back-End Tool 선정
 - [ ] API 연결 방안 탐색
 - [ ] 비회원 접근 차단
