@@ -1,4 +1,6 @@
-from flask import Blueprint
+from flask import Blueprint, render_template
+
+from model import *
 
 bp = Blueprint('main', __name__, url_prefix='/')
 
@@ -10,4 +12,6 @@ def hello_pybo():
 
 @bp.route('/')
 def index():
-    return 'main Page'
+    reviews = Review.query.all()
+    # SELECT * FROM reviews ORDER BY id DESE;
+    return render_template('index.html',reviews=reviews)

@@ -1,3 +1,12 @@
+# /**
+#  * @author [Limm-jk]
+#  * @email [201602057@cs-cnu.org]
+#  * @create date 2020-12-06 20:16:39
+#  * @modify date 2020-12-06 20:16:39
+#  * @desc [모델. 객체를 정의함]
+#  */
+
+
 from flask_sqlalchemy import SQLAlchemy
 import datetime
 db = SQLAlchemy()
