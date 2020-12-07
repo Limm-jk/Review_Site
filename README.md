@@ -17,14 +17,14 @@ SQLAlchemy 1.3.20
 # 의존성 설치
 pip install -r requirements.txt
 
-# Flask 실행
-cd review_site
-flask run
-
 # DB Initialize
 flask db init
 flask db migrate
 flask db update
+
+# Flask 실행
+cd review_site
+flask run
 ```
 ## Feature
 - 양질의 리뷰와 그에 대한 최저가 비교 제공
