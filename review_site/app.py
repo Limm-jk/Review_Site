@@ -19,10 +19,11 @@ app.config.from_object(config)
 db.init_app(app)
 migrate = Migrate(app,db)
 
-from views import main, review, comment
+from views import main, review, comment, auth
 app.register_blueprint(main.bp)
 app.register_blueprint(review.bp)
 app.register_blueprint(comment.bp)
+app.register_blueprint(auth.bp)
 
     
 
