@@ -1,0 +1,6 @@
+/review
+# 가상환경
+.vscode
+
+./views/review_site.db
+/review_site/review_site.db
