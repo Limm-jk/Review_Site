@@ -4,3 +4,4 @@
 
 ./views/review_site.db
 /review_site/review_site.db
+/review_site/migrations
