@@ -9,12 +9,14 @@
 from flask import Flask, render_template, request, redirect
 from flask_migrate import Migrate
 from flaskext.markdown import Markdown
+from flask_wtf.csrf import CSRFProtect
 
 from model import *
 import config
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = ''
+# csrf = CSRFProtect()
+# csrf.init_app(app)
 
 # DB 설정
 app.config.from_object(config)

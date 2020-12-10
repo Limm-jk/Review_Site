@@ -24,8 +24,8 @@ def signup():
             flash('이미 존재하는 사용자입니다.')
     return render_template('signup.html', form=form)
 
-@bp.route('/login/', methods=('GET', 'POST'))
-def login():
+@bp.route('/signin/', methods=('GET', 'POST'))
+def signin():
     form = UserLoginForm()
     if request.method == 'POST' and form.validate_on_submit():
         error = None
@@ -39,7 +39,7 @@ def login():
             session['user_id'] = user.id
             return redirect(url_for('main.index'))
         flash(error)
-    return render_template('login2.html', form=form)
+    return render_template('signin.html', form=form)
 
 @bp.route('/logout/')
 def logout():
