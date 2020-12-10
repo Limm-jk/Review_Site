@@ -16,11 +16,13 @@ class Review(db.Model):
     subject = db.Column(db.String(200), nullable=False) # 게시물 제목
     content = db.Column(db.Text(), nullable=False) # 게시물 컨텐츠
     create_date = db.Column(db.DateTime(), nullable=False) # 작성일자
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=False)
+    user = db.relationship('User', backref=db.backref('post_set'))
 
-    def __init__(self,subject,content):
-        self.subject = subject
-        self.content = content
-        self.create_date = datetime.datetime.now()
+    # def __init__(self,subject,content):
+    #     self.subject = subject
+    #     self.content = content
+    #     self.create_date = datetime.datetime.now()
 
 class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True) # 댓글 ID
