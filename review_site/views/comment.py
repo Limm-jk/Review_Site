@@ -14,7 +14,8 @@ bp = Blueprint('comment', __name__, url_prefix='/comment')
 @bp.route('/<int:id>/delete')
 def comment_delete(id):
     comment = Comment.query.get_or_404(id)
+    review_id = comment.reivew_id
     db.session.delete(comment)
     db.session.commit()
     
-    return redirect('/')
+    return redirect('/reviews/{}'.format(review_id))
