@@ -14,4 +14,9 @@ def hello_pybo():
 def index():
     reviews = Review.query.all()
     # SELECT * FROM reviews ORDER BY id DESE;
-    return render_template('index.html',reviews=reviews)
+    return render_template('cover_page.html',reviews=reviews)
+
+@bp.route('/list')
+def List():
+    reviews = Review.query.all()
+    return render_template('review_list.html',reviews=reviews)

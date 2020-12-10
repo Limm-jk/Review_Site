@@ -1,20 +1,88 @@
-{% extends 'base.html' %}
-{% block body_block %}
-    <h1>{{review.id}}</h1>
-    <h1>{{review.subject}}</h1>
-    <div class="card-text">{{ review.content|markdown }}</div>
-    <h1>{{review.create_date}}</h1>
-    <a href="/reviews/{{review.id}}/delete">삭제</a>
-    <a href="/reviews/{{review.id}}/edit">수정</a>
-    {% for comment in review.review_set %}
-        <p>{{comment.creator}} : {{comment.content}}</p>
-        <p>{{comment.create_date}}</p>
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Theme Template for Bootstrap</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    
+    <link rel="stylesheet" href="/static/cover.css">
+    <style>body {
+        background-color: black;
+        padding-top: 70px;
+        padding-bottom: 30px;
+      }
+      
+      .theme-dropdown .dropdown-menu {
+        position: static;
+        display: block;
+        margin-bottom: 20px;
+      }
+      
+      .theme-showcase > p > .btn {
+        margin: 5px 0;
+      }
+      
+      .theme-showcase .navbar .container {
+        width: auto;
+      }</style>
+    
+  </head>
+
+  <body role="document">
+    <div class="site-wrapper">
+
+        <div class="site-wrapper-inner">
+    
+            <div class="cover-container">
+    
+                <div class="masthead clearfix">
+                <div class="inner">
+                    <h3 class="masthead-brand"><a href="/">Review Site</a></h3>
+                    <nav>
+                    <ul class="nav masthead-nav">
+                        <li><a href="/list">게시물 목록</a></li>
+                        <li><a href="/auth/signin">sign in</a></li>
+                        <li><a href="/auth/signup">sign up</a></li>
+                    </ul>
+                    </nav>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <h1>{{review.id}}</h1>
+        <p>{{review.subject}}</p>
+        <p>{{ review.content|markdown }}</p>
+      </div>
+      <div class="jumbotron">
+        {% for comment in review.review_set %}
+        <span>{{comment.creator}} : {{comment.content}}<span>
+        <span>{{comment.create_date}}<span>
         <a href="/comment/{{comment.id}}/delete">댓글삭제</a>
-        
-    {% endfor %}
-    <form action="/reviews/{{review.id}}/comments" method='post'>
-        작성자 : <input type="text" name="creator" />
-        댓글 : <input type="text" name="content"/>
-        <input type='submit'/>
-    </form>
-{% endblock %} 
+        {% endfor %}
+        <form action="/reviews/{{review.id}}/comments" method='post'>
+            작성자 : <input type="text" name="creator" />
+            댓글 : <input type="text" name="content"/>
+            <input type='submit'/>
+        </form>
+      </div>
+    </div> <!-- /container -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  </body>
+</html>
