@@ -71,7 +71,7 @@ def comments(review_id):
     db.session.add(comment)
     db.session.commit()
     
-    return redirect('/')
+    return redirect('/reviews/{}'.format(id))
 
 @bp.route('/UploadImages')
 def UploadImages():

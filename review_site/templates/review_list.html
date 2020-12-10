@@ -38,7 +38,7 @@
                     <tr>
                         <td>{{review.id}}</td>
                         <td><a href="/reviews/{{review.id}}" style="color: black">{{review.subject}}</a></td>
-                        <td>{{review.content}}</td>
+                        <td>{{review.user.username}}</td>
                         <td>{{review.create_date|datetime}}</td>
                     </tr>
                 </tbody>
