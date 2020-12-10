@@ -27,7 +27,7 @@ def create():
     db.session.commit()
     
     # return render_template('create.html')
-    return redirect('/reviews/{}'.format(review.id))
+    return redirect('/')
     
 @bp.route('/<int:id>')
 def read(id):
@@ -35,6 +35,7 @@ def read(id):
     review = Review.query.get_or_404(id)
     # SELECT * FROM reviews WHERE id=1;
     return render_template('read.html',review=review)
+    
     
 @bp.route('/<int:id>/delete') 
 def delete(id):
