@@ -71,7 +71,7 @@ def comments(review_id):
     db.session.add(comment)
     db.session.commit()
     
-    return redirect('/list/')
+    return redirect('/reviews/{}'.format(review_id))
 
 @bp.route('/list/')
 def _list():
