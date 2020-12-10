@@ -19,10 +19,10 @@ def signup():
                         email=form.email.data)
             db.session.add(user)
             db.session.commit()
-            return redirect(url_for('index.index'))
+            return redirect(url_for('main.index'))
         else:
             flash('이미 존재하는 사용자입니다.')
-    return render_template('signup2.html', form=form)
+    return render_template('signup.html', form=form)
 
 @bp.route('/login/', methods=('GET', 'POST'))
 def login():
@@ -39,7 +39,7 @@ def login():
             session['user_id'] = user.id
             return redirect(url_for('main.index'))
         flash(error)
-    return render_template('auth/login.html', form=form)
+    return render_template('login2.html', form=form)
 
 @bp.route('/logout/')
 def logout():

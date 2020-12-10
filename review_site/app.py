@@ -8,16 +8,22 @@
 
 from flask import Flask, render_template, request, redirect
 from flask_migrate import Migrate
+from flaskext.markdown import Markdown
 
 from model import *
 import config
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = ''
 
 # DB 설정
 app.config.from_object(config)
 db.init_app(app)
 migrate = Migrate(app,db)
+
+# markdown
+Markdown(app, extensions=['nl2br', 'fenced_code'])
+
 
 from views import main, review, comment, auth
 app.register_blueprint(main.bp)

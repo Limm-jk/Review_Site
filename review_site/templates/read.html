@@ -2,7 +2,7 @@
 {% block body_block %}
     <h1>{{review.id}}</h1>
     <h1>{{review.subject}}</h1>
-    <h1>{{review.content}}</h1>
+    <div class="card-text">{{ review.content|markdown }}</div>
     <h1>{{review.create_date}}</h1>
     <a href="/reviews/{{review.id}}/delete">삭제</a>
     <a href="/reviews/{{review.id}}/edit">수정</a>
