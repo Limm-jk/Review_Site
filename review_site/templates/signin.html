@@ -12,14 +12,14 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 
-    <link rel="stylesheet" href="../static/login.css">
+    <link rel="stylesheet" href="/static/login.css">
   </head>
 
   <body>
 
     <div class="container">
 
-        <form method="post" class="post-form">
+        <form method="post" class="form-signin">
             {{ form.csrf_token }}
             {% include "form_errors.html" %}
             <div class="form-group">
