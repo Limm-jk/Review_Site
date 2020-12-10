@@ -90,12 +90,17 @@
                 <p>{{ review.content|markdown }}</p>
             </div> -->
             <div class="jumbotron">
-              {% for comment in review.review_set %}
-              <span>{{comment.creator}} : {{comment.content}}<span>
-              <span>{{comment.create_date|datetime}}<span>
-              <a href="/comment/{{comment.id}}/delete">댓글삭제</a>
-              {% endfor %}
-              <form action="/reviews/{{review.id}}/comments" method='post'>
+                {% for comment in review.review_set %}
+                <div style="font-size:15px; padding-top:15px; padding-bottom:15px;">
+                    <div style="display: inline-block; width:100px;">{{comment.creator}}</div>
+                    <div style="display: inline-block; width:380px;">{{comment.content}}</div>
+                    <div style="display: inline-block; text-align: right;">{{comment.create_date|datetime}}<a href="/comment/{{comment.id}}/delete" style="padding-left:20px; color:black;">삭제</a></div>
+                </div>
+                {% endfor %}
+
+
+              
+              <form action="/reviews/{{review.id}}/comments" method='post' style="padding-top:15px;">
                   <input type="text" name="creator" placeholder="닉네임" style="width:100px"/>
                   <input type="text" name="content" placeholder="댓글" style="width:500px"/>
                   <input type='submit'/>
