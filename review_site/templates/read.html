@@ -66,7 +66,7 @@
       <div class="jumbotron">
         {% for comment in review.review_set %}
         <span>{{comment.creator}} : {{comment.content}}<span>
-        <span>{{comment.create_date}}<span>
+        <span>{{comment.create_date|datetime}}<span>
         <a href="/comment/{{comment.id}}/delete">댓글삭제</a>
         {% endfor %}
         <form action="/reviews/{{review.id}}/comments" method='post'>
