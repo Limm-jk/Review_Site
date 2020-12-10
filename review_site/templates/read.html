@@ -33,7 +33,17 @@
       
       .theme-showcase .navbar .container {
         width: auto;
-      }</style>
+      }
+      .jumbotron{
+          color:black;
+          border-radius: 15px;
+          font-size: xx-small;
+      }
+      .temp1{
+          font-size: xx-small;
+          text-align: right;
+      }
+      </style>
     
   </head>
 
@@ -65,9 +75,14 @@
             <div>
             <!-- Main jumbotron for a primary marketing message or call to action -->
             <div class="jumbotron">
-              <h1>{{review.id}}</h1>
-              <p>{{review.subject}}</p>
-              <p>{{ review.content|markdown }}</p>
+                <h2>{{review.subject}}<h2>
+                <p class="temp1">작성자 : {{review.user.username}}</p>
+                <p class="temp1">{{review.create_date}}</p>
+            </div>
+            <div class="jumbotron">
+                <h1>{{review.id}}</h1>
+                <p>{{review.subject}}</p>
+                <p>{{ review.content|markdown }}</p>
             </div>
             <div class="jumbotron">
               {% for comment in review.review_set %}
