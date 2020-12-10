@@ -71,23 +71,27 @@ def comments(review_id):
     db.session.add(comment)
     db.session.commit()
     
-    return redirect('/reviews/{}'.format(id))
+    return redirect('/list/')
 
-@bp.route('/UploadImages')
-def UploadImages():
-    return render_template('UploadImages.html')
+@bp.route('/list/')
+def _list():
+    # 입력 파라미터
+    kw = request.args.get('kw', type=str, default='')
 
+    # 조회
+    Review_list = Review.query.order_by(Review.create_date.desc())
+    if kw:
+        search = '%%{}%%'.format(kw)
+        # sub_query = db.session.query(Comment.reivew_id, Comment.content, User.username) \
+        #     .join(User, Comment.user_id == User.id).subquery()
+        Review_list = Review_list \
+            .join(User) \
+            .filter(Review.subject.ilike(search) |  # 질문제목
+                    Review.content.ilike(search) |  # 질문내용
+                    User.username.ilike(search)
+                    ) \
+            .distinct()
 
-@bp.route('/uploadImages', methods=['POST'])
-def uploadImages():
-    name = current_user.USERNAME
-    file = request.files['inputFile']
-    newFile=IMAGES(
-        NAME=file.filename,
-        USERNAME=name,
-        DATA=file.read()
-    )
-    db.session.add(newFile)
-    db.session.commit()
-
-    return 'Saved ' + file.filename + 'to the database !'
+    # 페이징
+    # Review_list = Review_list.paginate(page, per_page=10)
+    return render_template('review_list.html', reviews=Review_list)
