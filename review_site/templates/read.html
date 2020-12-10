@@ -14,9 +14,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
     
-    <link rel="stylesheet" href="/static/cover.css">
+    <link rel="stylesheet" href="/static/read.css">
     <style>body {
-        background-color: black;
+        background-color: #333;
         padding-top: 70px;
         padding-bottom: 30px;
       }
@@ -34,15 +34,16 @@
       .theme-showcase .navbar .container {
         width: auto;
       }
+
       .jumbotron{
-          color:black;
-          border-radius: 15px;
-          font-size: xx-small;
+        border-radius: 15px;
+        padding-right:15px;
+        padding-left:15px;
+        font-size: xx-small;
+        color : black;
+        text-align:initial;
       }
-      .temp1{
-          font-size: xx-small;
-          text-align: right;
-      }
+
       </style>
     
   </head>
@@ -50,40 +51,45 @@
   <body role="document">
     <div class="site-wrapper">
         <div class="cover-container">
-    
             <div class="masthead clearfix">
-            <div class="inner">
-                <h3 class="masthead-brand"><a href="/">Review Site</a></h3>
-                <nav>
-                    <ul class="nav masthead-nav">
-    
-              
-                      <li><a href="/list">게시물 목록</a></li>
-    
-                      {% if g.user %}
-                      <li><a href="/auth/logout">Log out</a></li>
-    
-                      {% else %}
-                      <li><a href="/auth/signin">sign in</a></li>
-                      <li><a href="/auth/signup">sign up</a></li>
-    
-                      {% endif %}
-                    </ul>
-                  </nav>
+                <div class="inner">
+                    <h3 class="masthead-brand"><a href="/">Review Site</a></h3>
+                    <nav>
+                        <ul class="nav masthead-nav">
+        
+                
+                        <li><a href="/list">게시물 목록</a></li>
+        
+                        {% if g.user %}
+                        <li><a href="/auth/logout">Log out</a></li>
+        
+                        {% else %}
+                        <li><a href="/auth/signin">sign in</a></li>
+                        <li><a href="/auth/signup">sign up</a></li>
+        
+                        {% endif %}
+                        </ul>
+                    </nav>
+                </div>
             </div>
+            <div style="margin-bottom: 50px;">
+
             </div>
-            <div>
             <!-- Main jumbotron for a primary marketing message or call to action -->
             <div class="jumbotron">
-                <h2>{{review.subject}}<h2>
-                <p class="temp1">작성자 : {{review.user.username}}</p>
-                <p class="temp1">{{review.create_date}}</p>
+                <h2 style="text-align: center;">{{review.subject}}<h2>
+                <p style="font-size: 12px; text-align: right; padding-right:15px;">작성자 : {{review.user.username}}</p>
+                <p style="font-size: 12px; text-align: right; padding-right:15px;">{{review.create_date|datetime}}</p>
+                <hr color = "black"></hr>
+                <p style="text-align: initial;">
+                    {{review.content|markdown}}
+                </p>
             </div>
-            <div class="jumbotron">
+            <!-- <div class="jumbotron">
                 <h1>{{review.id}}</h1>
                 <p>{{review.subject}}</p>
                 <p>{{ review.content|markdown }}</p>
-            </div>
+            </div> -->
             <div class="jumbotron">
               {% for comment in review.review_set %}
               <span>{{comment.creator}} : {{comment.content}}<span>
@@ -100,9 +106,6 @@
         </div>
         
     </div>
-
-
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   </body>
 </html>
