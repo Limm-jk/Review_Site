@@ -1,10 +1,9 @@
 {% extends 'base.html' %}
 {% block body_block %}
 <link rel="stylesheet" href="/static/list.css">
-<section class="content" style="margin-top : 200px;">
+<section class="content">
     <div class="row">
         <div class="col-xs-12">
-            <div class="box">
             <div class="box-header">
                 <div class="row">
                     <div class="col-lg-3">
@@ -44,7 +43,30 @@
                 </tbody>
                 
                 {% endfor %}
+
+                
                 </table>
+                <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th class="col-lg-9">품명</th>
+                        <th class="col-lg-3">가격</th>
+                        <!-- <th>조회수</th> -->
+                    </tr>
+                    </thead>
+                    {% for price in prices %}
+                <tbody class="content_list">
+                    <tr>
+                        <td><a style = "color:black; overflow:hidden;"  href="{{price.link}}">{{price.title}}</a></td>
+                        <td>{{price.price}} 원</td>
+                    </tr>
+    
+                    {% endfor %}
+                    </table>
+                
+                </tbody>
+                
+
             </div>
         <!-- /.box-body -->
         </div>

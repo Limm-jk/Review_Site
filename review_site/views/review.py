@@ -9,6 +9,7 @@
 from flask import Blueprint, render_template, request, redirect, g
 
 from model import *
+from lowPrize import *
 
 bp = Blueprint('review', __name__, url_prefix='/reviews')
 
@@ -91,7 +92,9 @@ def _list():
                     User.username.ilike(search)
                     ) \
             .distinct()
+        prices = find_low_price(kw)
 
     # 페이징
     # Review_list = Review_list.paginate(page, per_page=10)
-    return render_template('review_list.html', reviews=Review_list)
+    
+    return render_template('search_list.html', reviews=Review_list, prices = prices)
