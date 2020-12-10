@@ -2,7 +2,7 @@ from flask import Blueprint, url_for, render_template, flash, request, session
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import redirect
 
-from forms import UserCreateForm
+from forms import *
 from model import *
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
@@ -22,7 +22,7 @@ def signup():
             return redirect(url_for('index.index'))
         else:
             flash('이미 존재하는 사용자입니다.')
-    return render_template('auth/signup.html', form=form)
+    return render_template('signup2.html', form=form)
 
 @bp.route('/login/', methods=('GET', 'POST'))
 def login():
@@ -40,3 +40,8 @@ def login():
             return redirect(url_for('main.index'))
         flash(error)
     return render_template('auth/login.html', form=form)
+
+@bp.route('/logout/')
+def logout():
+    session.clear()
+    return redirect(url_for('main.index'))

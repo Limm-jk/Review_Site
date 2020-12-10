@@ -20,7 +20,7 @@ pip install -r requirements.txt
 # DB Initialize
 flask db init
 flask db migrate
-flask db update
+flask db upgrade
 
 # Flask 실행
 cd review_site
