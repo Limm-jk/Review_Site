@@ -1,4 +1,4 @@
-from flask import Blueprint, url_for, render_template, flash, request, session
+from flask import Blueprint, url_for, render_template, flash, request, session, g
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import redirect
 
@@ -45,3 +45,11 @@ def signin():
 def logout():
     session.clear()
     return redirect(url_for('main.index'))
+
+@bp.before_app_request
+def load_logged_in_user():
+    user_id = session.get('user_id')
+    if user_id is None:
+        g.user = None
+    else:
+        g.user = User.query.get(user_id)

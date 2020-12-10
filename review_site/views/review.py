@@ -6,7 +6,7 @@
 #  * @desc [리뷰 페이지의 view를 담당. 동작함수를 포함함]
 #  */
 
-from flask import Blueprint, render_template, request, redirect
+from flask import Blueprint, render_template, request, redirect, g
 
 from model import *
 
@@ -22,7 +22,8 @@ def create():
     subject = request.form.get('subject')
     # content = request.args.get('content')
     content = request.form.get('content')
-    review = Review(subject=subject, content=content)
+    user=g.user
+    review = Review(subject=subject, content=content, user = user)
     db.session.add(review)
     db.session.commit()
     

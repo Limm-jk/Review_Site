@@ -19,10 +19,11 @@ class Review(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=False)
     user = db.relationship('User', backref=db.backref('post_set'))
 
-    # def __init__(self,subject,content):
-    #     self.subject = subject
-    #     self.content = content
-    #     self.create_date = datetime.datetime.now()
+    def __init__(self,subject,content,user):
+        self.subject = subject
+        self.content = content
+        self.create_date = datetime.datetime.now()
+        self.user = user
 
 class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True) # 댓글 ID

@@ -26,6 +26,10 @@ migrate = Migrate(app,db)
 # markdown
 Markdown(app, extensions=['nl2br', 'fenced_code'])
 
+# filter
+from filter import format_datetime
+app.jinja_env.filters['datetime'] = format_datetime
+
 
 from views import main, review, comment, auth
 app.register_blueprint(main.bp)
