@@ -71,3 +71,22 @@ def comments(review_id):
     db.session.commit()
     
     return redirect('/')
+
+@bp.route('/UploadImages')
+def UploadImages():
+    return render_template('UploadImages.html')
+
+
+@bp.route('/uploadImages', methods=['POST'])
+def uploadImages():
+    name = current_user.USERNAME
+    file = request.files['inputFile']
+    newFile=IMAGES(
+        NAME=file.filename,
+        USERNAME=name,
+        DATA=file.read()
+    )
+    db.session.add(newFile)
+    db.session.commit()
+
+    return 'Saved ' + file.filename + 'to the database !'
